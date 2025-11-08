@@ -42,7 +42,7 @@ from datetime import datetime
 class Job(BaseModel):
     name: str
     cost: int
-    start_date: datetime
+    
 
 jobs = list()
 
