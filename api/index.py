@@ -56,7 +56,7 @@ def create(job : Job):                         # we can send objects as input
 def get_jobs():
     return {"Jobs": jobs}
 
-@app.delete("/api/delete/{job_id}")
+@app.delete("/api/delete/{job_no}")
 def delete_job(job_no: int):
     if job_no < len(jobs) and job_no >= 0: 
         deleted_job = jobs.pop(job_no)
