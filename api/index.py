@@ -34,4 +34,20 @@ def search(request: Request):
 
     print(parameters)
 
-    return {"Parameters": parameters, "Values": parameter_values}
+    return {"Parameters": parameters}
+
+from pydantic import BaseModel  # to define data models like classes and objects
+from datetime import datetime
+
+class Job(BaseModel):
+    name: str
+    cost: int
+    start_date: datetime
+
+jobs = list()
+
+@app.post("/api/create")
+def create(job : Job):                         # we can send objects as input
+    jobs.append(job)
+
+    return {"Message": "Item created successfully", "Item": job}
