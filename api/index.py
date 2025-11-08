@@ -19,10 +19,19 @@ def index():
 @app.get("/api/params")
 def search(request: Request):
     parameters = list()
+    parameter_values = list()
+    for parameter_name in request.query_params.keys(): # Iterate through all query parameters but gives only unique keys
 
-    for parameter_name in request.query_params.keys():
-        parameters.append(parameter_name)
+        parameter_values.append(request.query_params.getlist(parameter_name))  # Get all values of each parameter
+
+        for value in parameter_values:
+            parameters.append(
+                {
+                    "Parameter": parameter_name,
+                    "Value": value,
+                }
+            )
 
     print(parameters)
-    
-    return {"Parameters": parameters}
+
+    return {"Parameters": parameters, "Values": parameter_values}
