@@ -51,3 +51,7 @@ def create(job : Job):                         # we can send objects as input
     jobs.append(job)
 
     return {"Message": "Item created successfully", "Item": job}
+
+@app.get("/api/jobs")
+def get_jobs():
+    return {"Jobs": jobs}
