@@ -55,3 +55,11 @@ def create(job : Job):                         # we can send objects as input
 @app.get("/api/jobs")
 def get_jobs():
     return {"Jobs": jobs}
+
+@app.delete("/api/delete/{job_id}")
+def delete_job(job_no: int):
+    if job_no < len(jobs) and job_no >= 0: 
+        deleted_job = jobs.pop(job_no)
+        return {"Message": "Job deleted successfully", "Deleted Job": deleted_job}
+    else:
+        return {"Error": "Job ID out of range"}
